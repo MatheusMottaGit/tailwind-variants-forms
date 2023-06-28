@@ -21,18 +21,33 @@ const createUserFormSchema = z.object({
 
 export default function Home({ state }: InputProps) {
 
-  //styles tailwind variants
-  const { base, input, button } = form({ state })
-
-  //form 
-  const { register, handleSubmit, formState: { errors } } = useForm<UserData>({
-    resolver: zodResolver(createUserFormSchema)
-  })
-
   const [user, setUser] = useState('')
+  const [className, setClassName] = useState<InputProps["state"]>()
+
+  const { 
+    base, 
+    input, 
+    button 
+  } = form({ className })
+
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors },
+    reset
+  } = useForm<UserData>({ resolver: zodResolver(createUserFormSchema) })
 
   function createUser(data: UserData){
+    if(errors.email && errors.password){
+      setClassName("error")
+    }
+
     setUser(JSON.stringify(data, null, 2))
+
+    reset({
+      email: "",
+      password: ""
+    })
   }
 
   return (
