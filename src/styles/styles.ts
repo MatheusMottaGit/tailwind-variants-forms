@@ -13,7 +13,11 @@ export const form = tv({
     state: {
       error: {
         input: "border-2 border-red-800",
-        button: "bg-green-900 cursor-not-allowed text-white/50"
+        button: "bg-green-900 text-white/50 cursor-not-allowed"
+      },
+
+      success: {
+        input: "border-2 border-green-800"
       }
     }
   }
