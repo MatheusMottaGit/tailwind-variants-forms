@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { zodResolver} from '@hookform/resolvers/zod'
 import { tv } from "tailwind-variants"
+import ErrorMessage from "@/components/ErrorMessage"
 
 type UserData = z.infer<typeof createUserFormSchema>
 
@@ -38,7 +39,7 @@ export default function Home() {
           placeholder="E-mail..."
           {...register('email')} 
         />
-        {/* {errors.email &&} */}
+        {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
       </div>
 
       <div className="w-full flex flex-col gap-1">
