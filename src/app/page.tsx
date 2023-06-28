@@ -3,7 +3,7 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { zodResolver } from '@hookform/resolvers/zod'
-import { InputProps, input } from "@/styles/styles"
+import { InputProps, form } from "@/styles/styles"
 
 import ErrorMessage from "@/components/ErrorMessage"
 
@@ -19,8 +19,12 @@ const createUserFormSchema = z.object({
     .min(8, 'Sua senha deve ter no mínimo 8 caracteres...')
 })
 
-export default function Home() {
+export default function Home({ state }: InputProps) {
 
+  //styles tailwind variants
+  const { base, input, button } = form({ state })
+
+  //form 
   const { register, handleSubmit, formState: { errors } } = useForm<UserData>({
     resolver: zodResolver(createUserFormSchema)
   })
@@ -32,11 +36,11 @@ export default function Home() {
   }
 
   return (
-    <form className="flex w-80 flex-col items-center justify-center gap-4 text-white/40">
+    <form className={base()}>
       <div className="w-full flex flex-col gap-1">
         <input 
           type="text"
-          className="w-full p-2 bg-zinc-800 outline-none"
+          className={input()}
           placeholder="E-mail..."
           {...register('email')} 
         />
@@ -46,14 +50,14 @@ export default function Home() {
       <div className="w-full flex flex-col gap-1">
         <input 
           type="text"
-          className="w-full p-2 bg-zinc-800"
+          className={input()}
           placeholder="Senha..."
           {...register('password')} 
         />
         
       </div>
 
-      <button className="w-full p-2 bg-green-800 text-white" onClick={handleSubmit(createUser)}>
+      <button className={button()} onClick={handleSubmit(createUser)}>
         Enviar
       </button>
 
