@@ -2,8 +2,9 @@
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { useState } from "react"
-import { zodResolver} from '@hookform/resolvers/zod'
-import { tv } from "tailwind-variants"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { InputProps, input } from "@/styles/styles"
+
 import ErrorMessage from "@/components/ErrorMessage"
 
 type UserData = z.infer<typeof createUserFormSchema>
@@ -35,7 +36,7 @@ export default function Home() {
       <div className="w-full flex flex-col gap-1">
         <input 
           type="text"
-          className="w-full p-2 bg-zinc-800"
+          className="w-full p-2 bg-zinc-800 outline-none"
           placeholder="E-mail..."
           {...register('email')} 
         />
