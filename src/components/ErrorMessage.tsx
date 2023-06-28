@@ -6,7 +6,7 @@ interface Props {
 
 const ErrorMessage = ({ children }: Props) => {
   return (
-    <span className='text-red-800'>
+    <span className='text-red-800 text-sm'>
       {children}
     </span>
   )
