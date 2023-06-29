@@ -1,6 +1,6 @@
 import { tv, VariantProps } from "tailwind-variants";
 
-export interface InputProps extends VariantProps<typeof form>{}
+export interface FormProps extends VariantProps<typeof form>{}
 
 export const form = tv({
   slots: {
